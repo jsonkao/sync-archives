@@ -9,19 +9,48 @@ const headers = { 'Authorization': 'token ' + process.env.TOKEN };
 function downloadFile(gitFile) {
   const { name, download_url } = gitFile;
   return axios.request({ url: download_url, headers, responseType: 'stream' })
-    .then(response => response.data.pipe(fs.createWriteStream('outputs/' + name)));
+    .then(response => writeToFile(response.data, 'outputs/' + name))
+    .then(() => console.log('Downloaded', name))
+    .catch(err => {
+      console.error(err, gitFile);
+    })
 }
 
-// Create output directory if it doesn't exist
-if (fs.existsSync(OUTPUT_DIR))
-  fs.mkdirSync(OUTPUT_DIR);
+// Pipe data to a file
+function writeToFile(data, filename) {
+  return new Promise((resolve, reject) => {
+    const w = fs.createWriteStream(filename);
+    data.pipe(w);
+    w.on('finish', resolve);
+    w.on('error', reject);
+  });
+}
 
-// Get contents
-axios.request({
-  url: process.env.CONTENTS_PATH,
-  headers
-})
-  // Download each file
-  .then(response => Promise.all(response.data.map(downloadFile)))
-  // If error, log it
-  .catch(console.error);
+// Promise progress callback
+function promiseAllProgress(promises, callback) {
+  let n = 0;
+  callback(n);
+  for (const p of promises)
+    p.then(() => {
+      n++;
+      callback(n / promises.length);
+    });
+  return Promise.all(promises);
+}
+
+async function main() {
+  // Get contents
+  const { data } = await axios.request({
+    url: process.env.CONTENTS_PATH,
+    headers
+  });
+
+  // Run downloads in parallel
+  promiseAllProgress(data.map(downloadFile), n => console.log(`Proportion done = ${n.toFixed(2)}`))
+
+  // Run downloads synchronously
+  // for (const file of data)
+    // await downloadFile(file);
+}
+
+main();
