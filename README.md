@@ -20,3 +20,6 @@ Archives will be written into `./outputs`.
 
 <pre>
 $ node upload.js <var>INPUT_PATH</var> <var>CONTENT_PATH</var>
+</pre>
+
+The input path is a local directory. The content path should be of the form `https://api.github.com/repos/:owner/:repo/contents/:path`.
