@@ -47,7 +47,7 @@ async function main() {
   // Get contents
   const { data } = await axios.request({
     url: process.argv[2],
-    headers
+    headers,
   });
 
   // Run downloads in parallel
