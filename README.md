@@ -1,4 +1,4 @@
-A script for retrieving scraper archives that are stored on GitHub.
+A script for syncing local scraper archives with GitHub repositories.
 
 ## Setup
 
