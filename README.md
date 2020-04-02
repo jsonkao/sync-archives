@@ -4,12 +4,14 @@ A script for retrieving scraper archives that are stored on GitHub.
 
 1. Clone this directory and `npm install`.
 
-2. Create a `.env` file. Set `TOKEN` to your [OAuth token](https://help.github.com/articles/creating-an-access-token-for-command-line-use). Set `CONTENTS_PATH` to the directory that contains the archive. It should be of the form `https://api.github.com/repos/:owner/:repo/contents/:path`.
+2. Create a `.env` file. Set `TOKEN` to your [OAuth token](https://help.github.com/articles/creating-an-access-token-for-command-line-use).
 
 ## Usage
 
-```
-$ node index.js
-```
+<pre>
+$ node index.js <var>CONTENT_PATH</var>
+</pre>
+
+The content path should be of the form `https://api.github.com/repos/:owner/:repo/contents/:path`.
 
 Archives will be written into `./outputs`.

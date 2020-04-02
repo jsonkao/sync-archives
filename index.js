@@ -2,14 +2,14 @@ const fs = require('fs');
 const axios = require('axios');
 require('dotenv').config();
 
-const OUTPUT_DIR = './outputs';
+const OUTPUT_DIR = './outputs-2';
 const headers = { 'Authorization': 'token ' + process.env.TOKEN };
 
 // Download a file
 function downloadFile(gitFile) {
   const { name, download_url } = gitFile;
   return axios.request({ url: download_url, headers, responseType: 'stream' })
-    .then(response => writeToFile(response.data, 'outputs/' + name))
+    .then(response => writeToFile(response.data, OUTPUT_DIR + '/' + name))
     .then(() => console.log('Downloaded', name))
     .catch(err => {
       console.error(err, gitFile);
@@ -39,9 +39,14 @@ function promiseAllProgress(promises, callback) {
 }
 
 async function main() {
+  if (process.argv.length != 3) {
+    console.log('usage: node index.js <path>');
+    return;
+  }
+
   // Get contents
   const { data } = await axios.request({
-    url: process.env.CONTENTS_PATH,
+    url: process.argv[2],
     headers
   });
 
