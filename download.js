@@ -2,7 +2,7 @@ const fs = require('fs');
 const axios = require('axios');
 require('dotenv').config();
 
-const OUTPUT_DIR = './outputs-2';
+const OUTPUT_DIR = './outputs';
 const headers = { 'Authorization': 'token ' + process.env.TOKEN };
 
 // Download a file
@@ -40,7 +40,7 @@ function promiseAllProgress(promises, callback) {
 
 async function main() {
   if (process.argv.length != 3) {
-    console.log('usage: node index.js <path>');
+    console.log('usage: node download.js <contentPath>');
     return;
   }
 
