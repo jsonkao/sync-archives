@@ -1,5 +1,6 @@
 const fs = require('fs');
 const axios = require('axios');
+const chalk = require('chalk');
 require('dotenv').config();
 
 const OUTPUT_DIR = './outputs';
@@ -10,7 +11,7 @@ function downloadFile(gitFile) {
   const { name, download_url } = gitFile;
   return axios.request({ url: download_url, headers, responseType: 'stream' })
     .then(response => writeToFile(response.data, OUTPUT_DIR + '/' + name))
-    .then(() => console.log('Downloaded', name))
+    .then(() => console.log(chalk.green(chalk.bold('Downloaded'), name)))
     .catch(err => {
       console.error(err, gitFile);
     })
@@ -50,7 +51,7 @@ async function main() {
     headers,
   });
 
-  // Run downloads in parallel
+  // Run downloads concurrently
   promiseAllProgress(data.map(downloadFile), n => console.log(`Proportion done = ${n.toFixed(2)}`))
 
   // Run downloads synchronously
