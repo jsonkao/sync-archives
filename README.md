@@ -4,7 +4,7 @@ A script for syncing local scraper archives with GitHub repositories.
 
 1. Clone this directory and `npm install`.
 
-2. Create a `.env` file. Set `TOKEN` to your [OAuth token](https://help.github.com/articles/creating-an-access-token-for-command-line-use).
+2. Create a `.env` file. Set `TOKEN` to your [OAuth token](https://help.github.com/articles/creating-an-access-token-for-command-line-use). Add `.env` to your [`.gitignore`](https://guide.freecodecamp.org/git/gitignore/).
 
 ## Downloading an archive
 
