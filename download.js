@@ -59,4 +59,4 @@ async function main() {
     // await downloadFile(file);
 }
 
-main();
+main().catch(console.error);

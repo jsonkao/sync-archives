@@ -51,4 +51,4 @@ async function main() {
   await Promise.all(promises);
 }
 
-main();
+main().catch(console.error);
