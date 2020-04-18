@@ -1,25 +1,35 @@
-A script for syncing local scraper archives with GitHub repositories.
+A collection of scripts for syncing local and remote archives.
 
 ## Setup
 
 1. Clone this directory and `npm install`.
 
-2. Create a `.env` file. Set `TOKEN` to your [OAuth token](https://help.github.com/articles/creating-an-access-token-for-command-line-use). Add `.env` to your [`.gitignore`](https://guide.freecodecamp.org/git/gitignore/).
+2. For archives on GitHub: Create a `.env` file. Set `TOKEN` to your [OAuth token](https://help.github.com/articles/creating-an-access-token-for-command-line-use) (use spec-scraper-bot if you can). Add `.env` to your [`.gitignore`](https://guide.freecodecamp.org/git/gitignore/).
 
-## Downloading an archive
+3. For archives on S3: Configure `spec-graphics` AWS credentials.
 
-<pre>
-$ node download.js <var>CONTENT_PATH</var>
-</pre>
+## GitHub
 
-The content path should be of the form `https://api.github.com/repos/:owner/:repo/contents/:path`.
-
-Archives will be written into `./outputs`.
-
-## Uploading an archive
+### Downloading an archive
 
 <pre>
-$ node upload.js <var>INPUT_PATH</var> <var>CONTENT_PATH</var>
+$ node github-download.js <var>CONTENT_PATH</var> <var>OUTPUT_PATH</var>
 </pre>
 
-The input path is a local directory. The content path should be of the form `https://api.github.com/repos/:owner/:repo/contents/:path`.
+The content path should be of the form `/repos/:owner/:repo/contents/:path`.
+
+The output path is a local directory. The script will make the output path if it doesn't already exist.
+
+### Uploading an archive
+
+<pre>
+$ node github-upload.js <var>CONTENT_PATH</var> <var>INPUT_PATH</var>
+</pre>
+
+The content path should be of the form `/repos/:owner/:repo/contents/:path`.
+
+The input path is a local directory. The script will make the input path if it doesn't already exist.
+
+## S3
+
+_In progress._
