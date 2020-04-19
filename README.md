@@ -10,7 +10,7 @@ A collection of scripts for syncing local and remote archives.
 
 ## Downloading an archive
 
-#### GitHub
+### GitHub
 
 <pre>
 $ node github-download.js <var>CONTENT_PATH</var> <var>OUTPUT_PATH</var>
@@ -20,13 +20,13 @@ The content path should be of the form `/repos/:owner/:repo/contents/:path`.
 
 The output path is a local directory. The script will make the output path if it doesn't already exist.
 
-#### S3
+### S3
 
 _In progress._
 
 ### Uploading an archive
 
-#### GitHub
+### GitHub
 
 <pre>
 $ node github-upload.js <var>CONTENT_PATH</var> <var>INPUT_PATH</var>
@@ -36,6 +36,6 @@ The content path should be of the form `/repos/:owner/:repo/contents/:path`.
 
 The input path is a local directory. The script will make the input path if it doesn't already exist.
 
-#### S3
+### S3
 
 _In progress._
