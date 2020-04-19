@@ -8,34 +8,24 @@ A collection of scripts for syncing local and remote archives.
 
 3. For archives on S3: Configure `spec-graphics` AWS credentials.
 
-## Downloading an archive
-
-### GitHub
+## GitHub archives
 
 <pre>
 $ node github-download.js <var>CONTENT_PATH</var> <var>OUTPUT_PATH</var>
 </pre>
 
-The content path should be of the form `/repos/:owner/:repo/contents/:path`.
+This script downloads an archive from GitHub.
 
-The output path is a local directory. The script will make the output path if it doesn't already exist.
-
-### S3
-
-_In progress._
-
-### Uploading an archive
-
-### GitHub
+The content path should be of the form `/repos/:owner/:repo/contents/:path`. The output path is a local directory. The script will make the output path if it doesn't already exist.
 
 <pre>
 $ node github-upload.js <var>CONTENT_PATH</var> <var>INPUT_PATH</var>
 </pre>
 
-The content path should be of the form `/repos/:owner/:repo/contents/:path`.
+This script uploads a local archive to GitHub.
 
-The input path is a local directory. The script will make the input path if it doesn't already exist.
+The content path should be of the form `/repos/:owner/:repo/contents/:path`. The input path is a local directory. The script will make the input path if it doesn't already exist.
 
-### S3
+## S3 archives
 
 _In progress._
