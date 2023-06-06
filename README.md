@@ -19,7 +19,7 @@ This script downloads an archive from GitHub.
 The content path should be of the form `/repos/:owner/:repo/contents/:path`. The output path is a local directory. The script will make the output path if it doesn't already exist.
 
 <pre>
-$ node github-upload.js <var>CONTENT_PATH</var> <var>INPUT_PATH</var>
+$ node github-upload.js <var>INPUT_PATH</var> <var>CONTENT_PATH</var>
 </pre>
 
 This script uploads a local archive to GitHub.

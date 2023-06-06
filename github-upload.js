@@ -29,8 +29,14 @@ function putFile(origin, destination) {
       const { response } = error;
       if (response.data.message.includes(`"sha" wasn't supplied.`))
         console.error(chalk.red(chalk.bold('File already exists:'), destination));
-      else
+      else if (response.data.message.includes(`Bad credentials`))
+        console.error(chalk.red(chalk.bold('Bad credentials:'), destination));
+      else if (response.data.message.includes(`but expected`))
+        console.error(chalk.red(chalk.bold('Destination unexpected:'), destination));
+      else {
         console.error(chalk.red(chalk.bold('Failed to put'), origin, 'at', destination));
+        console.error(response)
+      }
     });
 }
 
