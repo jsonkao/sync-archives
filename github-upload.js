@@ -48,8 +48,8 @@ async function main() {
   const inputPath = process.argv[2];
   const contentPath = process.argv[3];
 
-  // Concurrency (plimit > 1) leads to a general, non-file-existing errors
-  const limit = pLimit(1);
+  // Concurrency (plimit > 1) can lead to non-file-existing errors
+  const limit = pLimit(2);
   const promises = (await fs.readdir(inputPath))
     .filter(fname => fname.includes('.json'))
     .map(fname => limit(() => putFile(inputPath + '/' + fname, contentPath + '/' + fname)));
